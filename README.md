@@ -10,6 +10,13 @@ An opportunity to use my personal FastAPI template.
 **Audience**: Anyone interested in FastAPI/Pydantic projects.
 
 
+## Design
+* API endpoints
+  * `GET /api/`; returns "about" message
+  * `POST /api/risk_profile`; for example payload, see original readme
+* 
+
+
 ## Usage local
 
 ```
@@ -36,4 +43,6 @@ http://127.0.0.1:8000/docs
 
 
 ## TODOs
-
+* `POST /risk_profile`: add param for "line": ("auto", "disability", "home", "life")
+* add `logging` library
+* 
