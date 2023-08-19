@@ -23,18 +23,17 @@ def default_personal_info_data(request) -> PersonalInfoDataClass:
     )
 
 
-
 @pytest.fixture
 def default_profiler(default_personal_info_data) -> Profiler:
     return Profiler(personal_info=default_personal_info_data)
 
-risk_questions_combinations = [
-    ([0, 0, 0], 0),
-    ([1, 0, 0], 1),
-    ([0, 1, 1], 2),
-    ([1, 1, 1], 3)
-]
-
+# TODO: test multiple combinations
+# risk_questions_combinations = [
+#     ([0, 0, 0], 0),
+#     ([1, 0, 0], 1),
+#     ([0, 1, 1], 2),
+#     ([1, 1, 1], 3)
+# ]
 
 @pytest.mark.parametrize("default_personal_info_data", 
                          [{"risk_questions": [1, 0, 1]}], 
