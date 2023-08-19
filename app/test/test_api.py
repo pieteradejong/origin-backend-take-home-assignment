@@ -7,4 +7,7 @@ client = TestClient(app)
 def test_root():
     resp = client.get("/")
     assert resp.status_code == 200
-    return { "message" : "This is a risk assessment API." }
+    assert resp.json() == {
+        "status": "success",
+        "message": "This is a risk assessment API."
+    }

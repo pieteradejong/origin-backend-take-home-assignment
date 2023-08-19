@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from pydantic_models import OwnershipStatusPayloadEnum, MaritalStatusPayloadEnum
+from app.models.pydantic_models import OwnershipStatusPayloadEnum, MaritalStatusPayloadEnum
 from typing import Optional, List, Literal
 
 @dataclass
