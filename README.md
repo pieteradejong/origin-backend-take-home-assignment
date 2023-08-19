@@ -14,7 +14,10 @@ An opportunity to use my personal FastAPI template.
 * API endpoints
   * `GET /api/`; returns "about" message
   * `POST /api/risk_profile`; for example payload, see original readme
-* 
+* Profiler: two possible approaches:
+  * 1) Create individualized profile, implement using "build" pattern.
+  * 2) Use Profiler as a provider of functionaltiy, but doesn't maintain state of any individual profile. E.g. just a collection/libarry of static methods.
+  * Given the requirement to only give an immediate API response to a small json request, and there is no persistence requirement, we should probably stick to only providing functionality and NOT maintaining state for an individual profile. But might implement both for kicks.
 
 
 ## Usage local
