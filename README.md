@@ -15,9 +15,16 @@ An opportunity to use my personal FastAPI template.
   * `GET /api/`; returns "about" message
   * `POST /api/risk_profile`; for example payload, see original readme
 * Profiler: two possible approaches:
-  * 1) Create individualized profile, implement using "build" pattern.
-  * 2) Use Profiler as a provider of functionaltiy, but doesn't maintain state of any individual profile. E.g. just a collection/libarry of static methods.
-  * Given the requirement to only give an immediate API response to a small json request, and there is no persistence requirement, we should probably stick to only providing functionality and NOT maintaining state for an individual profile. But might implement both for kicks.
+  * 1) stateful profile, implement using "build" pattern. Useful in conjunction with persistence.
+  * 2) provider of functionaltiy, not stateful for individual profiles. A related collection of static methods, with some class variables.
+  * Given the requirement for only a completely deterministic, rule-based API response, and no specified persistence, we'll implement approach number 2.
+* Profiler implementation:
+  * separate static methods for each profiling step: `base score` (0-3), `risk_score` (pos/neg increments), and `final_score` ("economic", "regular", "irresponsible").
+  * each method used for scoring will have a name with prefix `calc_score_`, and Runner (TODO write about) will dynamically during runtime call all these methods on `personal_info`. That way new scoring methods will automatically be run if they are named by the prefix.
+  * benefits to **modularity, testing, maintainability, extensibility**: changes to any step are made in that function; testing is easier because the functions will be pure, i,e. have no side effects;  each step can be modified, expanded, or removed, or new steps added.
+* `class RiskScore`: 
+  * will have `insurance lines` field, because the knowledge of insurance lines is inherently part of the risk score. 
+
 
 
 ## Usage local

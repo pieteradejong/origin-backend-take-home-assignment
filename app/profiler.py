@@ -1,50 +1,59 @@
 from app.models.dataclass_models import PersonalInfoDataClass
 from app.models.pydantic_models import OwnershipStatusPayloadEnum, MaritalStatusPayloadEnum
-from datetime import datetime, timedelta
+from typing import Callable, List
 
 class Profiler:
 
     insurance_lines = ['life', 'disability', 'home', 'auto']
+    scoring_rules: List[Callable] = [income_score]
 
-    def __init__(self, personal_info: PersonalInfoDataClass):
-        self.personal_info = personal_info
+    def income_score(intermediate_score: dict[str, int], personal_info: PersonalInfoDataClass) -> dict[str, int]:
+        if personal_info.income > 200_000:
+            intermediate_score = {k: v-1 for k, v in intermediate_score.items()}
+        return intermediate_score
 
-    def calc_base_score(self):
-        return sum(self.personal_info.risk_questions)
 
-    def calc_risk_score_by_insurance_line(self) -> dict[str, str]:
-        base_score = self.calc_base_score()
-        risk_score = {
-            "auto": base_score,
-            "disability": base_score,
-            "home": base_score,
-            "life": base_score
-        }
+    
+    def calc_base_score(personal_info: PersonalInfoDataClass) -> int:
+        return sum(personal_info.risk_questions)
 
+    @staticmethod
+    def generate_base_profile(base_score: int, insurance_lines: list = insurance_lines) -> dict[str, int]:
+        return {line: 0 + base_score for line in insurance_lines}
+
+    @staticmethod
+    def generate_risk_profile(base_profile: dict[str, int], personal_info: PersonalInfoDataClass) -> dict[str, int]:
+        pass
+        risk_profile = {k: v for k, v in base_profile.items()}
+        # call a series of private functions for each field (age, income, etc.),
+        # and increment the risk profile accordingly
+    
+    @staticmethod
+    def calc_risk_score(base_profile: dict[str, int], personal_info: PersonalInfoDataClass) -> dict[str, str]:
         # Criteria resulting in numerically incremented scores
 
         # user age
-        if self.personal_info.age < 30:
+        if personal_info.age < 30:
             risk_score = {k: v-2 for k, v in risk_score.items()}
-        elif 30 <= self.personal_info.age <= 40:
+        elif 30 <= personal_info.age <= 40:
             risk_score = {k: v-1 for k, v in risk_score.items()}
 
         # income
-        if self.personal_info.income > 200_000:
+        if personal_info.income > 200_000:
             risk_score = {k: v-1 for k, v in risk_score.items()}
 
         # house
-        if self.personal_info.house.ownership_status == OwnershipStatusPayloadEnum.MORTGAGED:
+        if personal_info.house.ownership_status == OwnershipStatusPayloadEnum.MORTGAGED:
             risk_score['disability'] += 1
             risk_score['home'] += 1
 
         # dependents
-        if self.personal_info.dependents > 0:
+        if personal_info.dependents > 0:
             risk_score['disability'] += 1
             risk_score['life'] += 1
 
         # marriage
-        if self.personal_info.marital_status.marital_status == MaritalStatusPayloadEnum.MARRIED:
+        if personal_info.marital_status.marital_status == MaritalStatusPayloadEnum.MARRIED:
             risk_score['life'] += 1
             risk_score['disability'] -= 1
 
