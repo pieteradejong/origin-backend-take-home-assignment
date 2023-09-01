@@ -22,7 +22,7 @@ An opportunity to use my personal FastAPI template.
   * separate static methods for each profiling step: `base score` (0-3), `risk_score` (pos/neg increments), and `final_score` ("economic", "regular", "irresponsible").
   * each method used for scoring will have a name with prefix `calc_score_`, and Runner (TODO write about) will dynamically during runtime call all these methods on `personal_info`. That way new scoring methods will automatically be run if they are named by the prefix.
   * benefits to **modularity, testing, maintainability, extensibility**: changes to any step are made in that function; testing is easier because the functions will be pure, i,e. have no side effects;  each step can be modified, expanded, or removed, or new steps added.
-* `class RiskScore`: 
+* `class RiskScore`:
   * will have `insurance lines` field, because the knowledge of insurance lines is inherently part of the risk score. 
 
 
@@ -54,5 +54,6 @@ http://127.0.0.1:8000/docs
 
 ## TODOs
 * `POST /risk_profile`: add param for "line": ("auto", "disability", "home", "life")
-* add `logging` library
-* 
+* add `logging`
+* ? make enums for `INSURANCE_LINES` and `FINAL_SCORES`
+* extract into class var the 'finalize' thresholds,  `view_final` should just have dict comprehension

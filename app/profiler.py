@@ -12,8 +12,6 @@ class Profiler:
             intermediate_score = {k: v-1 for k, v in intermediate_score.items()}
         return intermediate_score
 
-
-    
     def calc_base_score(personal_info: PersonalInfoDataClass) -> int:
         return sum(personal_info.risk_questions)
 
@@ -32,27 +30,22 @@ class Profiler:
     def calc_risk_score(base_profile: dict[str, int], personal_info: PersonalInfoDataClass) -> dict[str, str]:
         # Criteria resulting in numerically incremented scores
 
-        # user age
         if personal_info.age < 30:
             risk_score = {k: v-2 for k, v in risk_score.items()}
         elif 30 <= personal_info.age <= 40:
             risk_score = {k: v-1 for k, v in risk_score.items()}
 
-        # income
         if personal_info.income > 200_000:
             risk_score = {k: v-1 for k, v in risk_score.items()}
 
-        # house
         if personal_info.house.ownership_status == OwnershipStatusPayloadEnum.MORTGAGED:
             risk_score['disability'] += 1
             risk_score['home'] += 1
 
-        # dependents
         if personal_info.dependents > 0:
             risk_score['disability'] += 1
             risk_score['life'] += 1
 
-        # marriage
         if personal_info.marital_status.marital_status == MaritalStatusPayloadEnum.MARRIED:
             risk_score['life'] += 1
             risk_score['disability'] -= 1
