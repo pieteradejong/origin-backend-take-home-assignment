@@ -1,6 +1,7 @@
 from dataclasses import dataclass
-from app.models.pydantic_models import OwnershipStatusPayloadEnum, MaritalStatusPayloadEnum
+from app.models.pydantic_models import OwnershipStatusPayloadEnum
 from typing import Optional, List, Literal
+from enum import Enum
 
 @dataclass
 class RiskProfile:
@@ -14,9 +15,13 @@ class RiskProfile:
 class HousePayloadDataClass:
     ownership_status: OwnershipStatusPayloadEnum
 
-@dataclass
-class MaritalStatusPayloadDataClass:
-    marital_status: MaritalStatusPayloadEnum
+# @dataclass
+# class MaritalStatusPayloadDataClass:
+#     marital_status: MaritalStatusPayloadEnum
+
+class MaritalStatus(Enum):
+    SINGLE = "single"
+    MARRIED = "married"
 
 @dataclass
 class VehiclePayloadDataClass:
@@ -29,6 +34,7 @@ class PersonalInfoDataClass:
     dependents: int
     house: Optional[HousePayloadDataClass]
     income: int
-    marital_status: MaritalStatusPayloadDataClass
+    # marital_status: MaritalStatusPayloadDataClass
+    marital_status: MaritalStatus
     risk_questions: List[Literal[0, 1]]
     vehicle: Optional[VehiclePayloadDataClass]

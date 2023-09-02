@@ -29,7 +29,12 @@ class RiskScore:
         return self.__risk_score
 
 
-    def calc_final(score: Union[int, str]) -> str:
+    def calc_final(self, score: Union[int, str]) -> str:
+        # for a in arg:
+        #     print(f"calc_final:  *arg: {a}")
+        # print(f"expect to be 1=  {len(arg)}")
+        # print(self.risk_sco)
+
         if score == 'ineligible': return score
         elif score <= 0: return 'economic'
         elif score in [1,2]: return 'regular'
@@ -42,8 +47,18 @@ class RiskScore:
         """
         Does not modify score, just returns "view" of current assessment.
         """
+        
+        # for line in RiskScore.INSURANCE_LINES:
+        #     print(f"expect to be one arg: [{self.risk_score[line]}]")
         score_view = { line: self.calc_final(self.risk_score[line]) for line in RiskScore.INSURANCE_LINES }
         return score_view
         
+    # def get_final_score(risk_score: dict[str, int]) -> dict[str, str]:
+    #     final = {line: '' for line in RiskScore.INSURANCE_LINES}
+        
+    #     for l in RiskScore.INSURANCE_LINES:
+    #         score = risk_score
+    #         # risk_score.
+
             
 

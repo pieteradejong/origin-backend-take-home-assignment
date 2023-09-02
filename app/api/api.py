@@ -2,6 +2,7 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 from typing import Literal
 from app.models.pydantic_models import PersonalInfoPayloadModel
+from app.services.profiler import Profiler
 
 router = APIRouter()
 
@@ -18,12 +19,15 @@ def root():
 
 @router.post("/risk_profile")
 def risk_profile(personal_info: PersonalInfoPayloadModel):
-    pass
-    # TODO: grab payload and pass to risk module
-    # e.g. risk_profile = Profiler.assess(payload)
-
+    risk_score = Profiler.calc_risk_score(personal_info)
+    return {
+        "status": "success",
+        "risk_score": risk_score
+    }
     """
-    return something like the following:
+    
+
+    sync return something like the following:
     {
         "status": "success",
         "risk_score": {
@@ -36,7 +40,4 @@ def risk_profile(personal_info: PersonalInfoPayloadModel):
     """
 
 
-    return {
-        "status": "success",
-        "message": "This will return a risk assessment."
-    }
+    

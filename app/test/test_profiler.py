@@ -1,6 +1,6 @@
 import pytest
-from app.models.dataclass_models import PersonalInfoDataClass, OwnershipStatusPayloadEnum, MaritalStatusPayloadEnum
-from app.profiler import Profiler
+from app.models.dataclass_models import PersonalInfoDataClass, OwnershipStatusPayloadEnum
+from app.services.profiler import Profiler
 from dataclasses import replace
 
 @pytest.fixture

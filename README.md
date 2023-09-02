@@ -14,6 +14,7 @@ An opportunity to use my personal FastAPI template.
 * API endpoints
   * `GET /api/`; returns "about" message
   * `POST /api/risk_profile`; for example payload, see original readme
+    * ! requirement is `"vehicle": {"year": 2018}` but implementation is `"vehicle": [{"year": 2018}]` due to conventient and relevant Pydantic validation rules, allowing the person to potentially have several vehicles.
 * Profiler: two possible approaches:
   * 1) stateful profile, implement using "build" pattern. Useful in conjunction with persistence.
   * 2) provider of functionaltiy, not stateful for individual profiles. A related collection of static methods, with some class variables.
@@ -57,3 +58,9 @@ http://127.0.0.1:8000/docs
 * add `logging`
 * ? make enums for `INSURANCE_LINES` and `FINAL_SCORES`
 * extract into class var the 'finalize' thresholds,  `view_final` should just have dict comprehension
+* ? rename risk score setter to `update`
+* ? prob not necessary, but could add method set risk score to new number instead of increment
+* extract stuff into config.py / env
+* rename: remove data class from their names
+* ? rename: payload classes
+* refactor: re-evaluate need for eac data class and payload class
