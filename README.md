@@ -64,3 +64,4 @@ http://127.0.0.1:8000/docs
 * rename: remove data class from their names
 * ? rename: payload classes
 * refactor: re-evaluate need for eac data class and payload class
+* refactor: `@risk_score.setter` to iterate over only known incurance lines

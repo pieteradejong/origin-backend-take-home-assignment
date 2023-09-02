@@ -1,18 +1,9 @@
 from app.models.dataclass_models import PersonalInfoDataClass, MaritalStatus
 from app.models.pydantic_models import OwnershipStatusPayloadEnum
 from app.services.risk_score import RiskScore
+from datetime import date
 
 class Profiler:
-
-    # def calc_base_score(personal_info: PersonalInfoDataClass) -> int:
-    #     return sum(personal_info.risk_questions)
-
-    # @staticmethod
-    # def generate_risk_profile(base_profile: dict[str, int], personal_info: PersonalInfoDataClass) -> dict[str, int]:
-    #     pass
-    #     risk_profile = {k: v for k, v in base_profile.items()}
-        # call a series of private functions for each field (age, income, etc.),
-        # and increment the risk profile accordingly
     
     @staticmethod
     def calc_risk_score(personal_info: PersonalInfoDataClass) -> dict[str, str]:
@@ -36,15 +27,22 @@ class Profiler:
         if personal_info.marital_status == MaritalStatus.MARRIED:
             risk_score.risk_score = { 'life': 1, 'disability': -1 }
 
-        # TODO: vehicle
-        # five_years_ago
-        # if self.personal_info.vehicle.year > ()
-
-        # Criteria resulting in categorical determinations of scores
-        # If the user doesn’t have income, vehicles or houses, she is ineligible for disability, auto, and home insurance, respectively.
-
+        if len(personal_info.vehicle) == 0:
+            risk_score.risk_score = { 'auto': 'ineligible' }
+        else:
+            curr_year = date.today().year
+            if personal_info.vehicle[0].year > curr_year - 5:
+                risk_score.risk_score = {k: 1 for k in ['auto']}
+        
+        if personal_info.income == 0:
+            risk_score.risk_score = { 'disability': 'ineligible' }
+        
+        if not personal_info.house:
+            risk_score.risk_score = { 'house': 'ineligible' }
 
         # If the user is over 60 years old, she is ineligible for disability and life insurance.
+        if personal_info.age > 60:
+            risk_score.risk_score = { 'disability': 'ineligible', 'life': 'ineligible' }
 
         return risk_score.view_final()
     
