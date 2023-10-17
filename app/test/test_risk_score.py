@@ -1,10 +1,11 @@
 import pytest
 from app.services.risk_score import RiskScore
 
+
 @pytest.fixture
 def zero_risk_score(mocker):
     mock_risk_profile = mocker.Mock()
-    mock_risk_profile.risk_score = { line: 0 for line in RiskScore.INSURANCE_LINES }
+    mock_risk_profile.risk_score = {line: 0 for line in RiskScore.INSURANCE_LINES}
     return mock_risk_profile
 
 

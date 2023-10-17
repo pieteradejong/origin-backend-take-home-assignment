@@ -2,12 +2,15 @@ from pydantic import BaseModel, conint, conlist
 from typing import Literal, Optional
 from enum import Enum
 
+
 class OwnershipStatusPayloadEnum(Enum):
     OWNED = "owned"
     MORTGAGED = "mortgaged"
 
+
 class HousePayloadModel(BaseModel):
     ownership_status: OwnershipStatusPayloadEnum
+
 
 # class MaritalStatusPayloadEnum(Enum):
 #     SINGLE = "single"
@@ -16,8 +19,10 @@ class HousePayloadModel(BaseModel):
 # class MaritalStatusPayloadModel(BaseModel):
 #     marital_status: MaritalStatusPayloadEnum
 
+
 class VehiclePayloadModel(BaseModel):
     year: conint(ge=1885, le=2100)
+
 
 class PersonalInfoPayloadModel(BaseModel):
     age: conint(ge=0, le=200)

@@ -9,13 +9,12 @@ def test_root():
     assert resp.status_code == 200
     assert resp.json() == {
         "status": "success",
-        "message": "This is a risk assessment API."
+        "message": "This is a risk assessment API.",
     }
 
+
 def test_risk_profile():
-    headers = {
-        "Content-Type": "application/json"
-    }
+    headers = {"Content-Type": "application/json"}
     payload = {
         "age": 35,
         "dependents": 2,
@@ -23,11 +22,11 @@ def test_risk_profile():
         "income": 0,
         "marital_status": "married",
         "risk_questions": [0, 1, 0],
-        "vehicle": [{"year": 2018}]
+        "vehicle": [{"year": 2018}],
     }
-    
+
     response = client.post("/risk_profile", headers=headers, json=payload)
-    
+
     assert response.status_code == 200
     expected_response = {
         "status": "success",
@@ -35,7 +34,7 @@ def test_risk_profile():
             "auto": "regular",
             "disability": "ineligible",
             "home": "economic",
-            "life": "regular"
-        }
+            "life": "regular",
+        },
     }
     assert response.json() == expected_response

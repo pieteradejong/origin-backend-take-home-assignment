@@ -6,24 +6,21 @@ from app.services.profiler import Profiler
 
 router = APIRouter()
 
+
 class SuccessResponse(BaseModel):
     status: Literal["success"]
     message: str
 
+
 @router.get("/", response_model=SuccessResponse, status_code=200)
 def root():
-    return {
-        "status": "success",
-        "message": "This is a risk assessment API."
-    }
+    return {"status": "success", "message": "This is a risk assessment API."}
+
 
 @router.post("/risk_profile")
 def risk_profile(personal_info: PersonalInfoPayloadModel):
     risk_score = Profiler.calc_risk_score(personal_info)
-    return {
-        "status": "success",
-        "risk_score": risk_score
-    }
+    return {"status": "success", "risk_score": risk_score}
     """
     
 
@@ -38,6 +35,3 @@ def risk_profile(personal_info: PersonalInfoPayloadModel):
         }
     }
     """
-
-
-    

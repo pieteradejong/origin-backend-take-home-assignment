@@ -5,11 +5,11 @@ import uvicorn
 
 from app.api import api
 
-with open('logging_config.json', 'r') as f:
+with open("logging_config.json", "r") as f:
     config = json.load(f)
 
 logging.config.dictConfig(config)
-logger = logging.getLogger('sampleApp')
+logger = logging.getLogger("sampleApp")
 
 app = FastAPI()
 app.include_router(api.router)
@@ -27,4 +27,3 @@ async def shutdown_event():
 
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8000)
-

@@ -3,6 +3,7 @@ from app.models.pydantic_models import OwnershipStatusPayloadEnum
 from typing import Optional, List, Literal
 from enum import Enum
 
+
 @dataclass
 class RiskProfile:
     name: str
@@ -15,13 +16,16 @@ class RiskProfile:
 class HousePayloadDataClass:
     ownership_status: OwnershipStatusPayloadEnum
 
+
 # @dataclass
 # class MaritalStatusPayloadDataClass:
 #     marital_status: MaritalStatusPayloadEnum
 
+
 class MaritalStatus(Enum):
     SINGLE = "single"
     MARRIED = "married"
+
 
 @dataclass
 class VehiclePayloadDataClass:
