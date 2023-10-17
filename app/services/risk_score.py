@@ -20,7 +20,7 @@ class RiskScore:
                 # ineligibility is an unchangeable state for each particular line
                 if self.__risk_score[insurance_line] != "ineligible":
                     self.__risk_score[insurance_line] = update
-            elif type(update) == int:
+            elif isinstance(update, int):
                 self.__risk_score[insurance_line] += update
 
     def risk_score_update(self, increments: dict[str, int]) -> dict[str, int]:
