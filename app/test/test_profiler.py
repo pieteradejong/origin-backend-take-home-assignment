@@ -1,5 +1,5 @@
 import pytest
-from app.models.dataclass_models import PersonalInfoDataClass, OwnershipStatusPayloadEnum
+from app.models.dataclass_models import PersonalInfoDataClass, OwnershipStatusPayloadEnum, MaritalStatus
 from app.services.profiler import Profiler
 from dataclasses import replace
 
@@ -59,7 +59,7 @@ risk_score_combinations = [
     ({"income": 250_000}, {"auto": -1, "disability": -1, "home": -1, "life": -1}),
     ({"house": {"ownership_status": OwnershipStatusPayloadEnum.MORTGAGED}}, {"auto": 0, "disability": 1, "home": 1, "life": 0}),
     ({"dependents": 1}, {"auto": 0, "disability": 1, "home": 0, "life": 1}),
-    ({"marital_status": {"marital_status": MaritalStatusPayloadEnum.MARRIED}}, {"auto": 0, "disability": -1, "home": 0, "life": 1}),
+    ({"marital_status": {"marital_status": MaritalStatus.MARRIED}}, {"auto": 0, "disability": -1, "home": 0, "life": 1}),
     # ... Add more combinations as required
 ]
 
