@@ -18,5 +18,6 @@ def zero_risk_score(mocker):
 #     result = risk_score_service.risk_score_update(ineligible_input)
 
 #     # Assert
-#     # replace with your assertion. For example, if you expect the risk score to be updated with the ineligible input:
+#     # replace with your assertion. For example,
+#       if you expect the risk score to be updated with the ineligible input:
 #     assert result['auto'] == 'ineligible'

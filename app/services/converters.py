@@ -1,5 +1,12 @@
-from app.models.pydantic_models import *
-from app.models.dataclass_models import *
+from app.models.pydantic_models import (
+    PersonalInfoPayloadModel,
+    MaritalStatusPayloadDataClass,
+)
+from app.models.dataclass_models import (
+    PersonalInfoDataClass,
+    HousePayloadDataClass,
+    VehiclePayloadDataClass,
+)
 
 
 def pydantic_to_dataclass(model: PersonalInfoPayloadModel) -> PersonalInfoDataClass:

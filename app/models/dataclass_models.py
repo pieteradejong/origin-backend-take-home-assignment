@@ -17,14 +17,14 @@ class HousePayloadDataClass:
     ownership_status: OwnershipStatusPayloadEnum
 
 
-# @dataclass
-# class MaritalStatusPayloadDataClass:
-#     marital_status: MaritalStatusPayloadEnum
-
-
 class MaritalStatus(Enum):
     SINGLE = "single"
     MARRIED = "married"
+
+
+@dataclass
+class MaritalStatusPayloadDataClass:
+    marital_status: MaritalStatus
 
 
 @dataclass

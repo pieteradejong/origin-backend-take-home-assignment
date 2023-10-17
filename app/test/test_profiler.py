@@ -44,7 +44,8 @@ def generate_test_data(personal_info_data_default):
                 (
                     replace(personal_info_data_default, age=age, income=income),
                     # You'd need to define how you determine the expected score:
-                    get_expected_risk_score(age, income),
+                    # TODO get_expected_risk_score is not defined
+                    # get_expected_risk_score(age, income),
                 )
             )
 
