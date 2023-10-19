@@ -1,3 +1,4 @@
+"""
 import pytest
 from app.models.dataclass_models import (
     PersonalInfoDataClass,
@@ -7,7 +8,7 @@ from app.models.dataclass_models import (
 from app.services.profiler import Profiler
 
 # from dataclasses import replace
-"""
+
 
 @pytest.fixture
 def default_personal_info_data(request) -> PersonalInfoDataClass:
@@ -35,6 +36,7 @@ def default_personal_info_data(request) -> PersonalInfoDataClass:
 # the inputs should be base_score and personal_info_data_default, and each user property
 # should be tested individually
 """
+"""
 def generate_test_data(personal_info_data_default):
     AGE_VARIATIONS = [25, 35, 60]
     INCOME_VARIATIONS = [50_000, 100_000, 250_000]
@@ -53,7 +55,7 @@ def generate_test_data(personal_info_data_default):
 
     return test_data
 """
-
+"""
 
 # @pytest.fixture
 # def default_profiler(default_personal_info_data) -> Profiler:
