@@ -1,7 +1,7 @@
 # Origin Financial Take Home (for fun)
 **Risk Assessment using FastAPI**
 
-[![pytest](https://github.com/pieteradejong/origin-backend-take-home-assignment/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/pieteradejong/origin-backend-take-home-assignment/actions/workflows/ci.yml)
+[![pytest](https://github.com/pieteradejong/origin-backend-take-home-assignment/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/pieteradejong/origin-backend-take-home-assignment/actions/workflows/ci.yml)
 
 Refer to README_original.md for the original README and project requirements by [Origin Financial](https://www.useorigin.com/).
 

@@ -1,3 +1,14 @@
+import pytest
+from app.services.profiler import Profiler
+
+
+@pytest.fixture
+def profiler_fixture(default_personal_info_data):
+    profiler = Profiler(default_personal_info_data)
+    yield profiler
+    del profiler
+
+
 """
 import pytest
 from app.models.dataclass_models import (
