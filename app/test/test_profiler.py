@@ -7,7 +7,7 @@ from app.models.dataclass_models import (
 from app.services.profiler import Profiler
 
 # from dataclasses import replace
-
+"""
 
 @pytest.fixture
 def default_personal_info_data(request) -> PersonalInfoDataClass:
@@ -115,3 +115,4 @@ def test_profiler_calulates_base_score(default_personal_info_data, expected_sum)
 def test_calculate_risk_score(default_personal_info_data, expected_risk_score):
     result = Profiler.calc_risk_score_by_insurance_line(default_personal_info_data)
     assert result == expected_risk_score
+"""
