@@ -4,6 +4,7 @@ from typing import Union
 class RiskScore:
     INSURANCE_LINES = set(["auto", "disability", "home", "life"])
     FINAL_SCORES = set(["ineligible", "economic", "regular", "responsible"])
+    # TODO: Separate set of IRREVERISBLE SCORES, incl for now only "ineligible"
 
     def __init__(self):
         self.__risk_score = {line: 0 for line in RiskScore.INSURANCE_LINES}
@@ -15,14 +16,17 @@ class RiskScore:
     @risk_score.setter
     def risk_score(self, increments: dict[str, Union[int, str]]) -> None:
         for insurance_line in RiskScore.INSURANCE_LINES & increments.keys():
+            if self.__risk_score[insurance_line] == "ineligible":
+                continue
+
             update = increments[insurance_line]
+
             if update in RiskScore.FINAL_SCORES:
-                # ineligibility is an unchangeable state for each particular line
-                if self.__risk_score[insurance_line] != "ineligible":
-                    self.__risk_score[insurance_line] = update
-            elif isinstance(update, int):
+                self.__risk_score[insurance_line] = update
+            else:
                 self.__risk_score[insurance_line] += update
 
+    # TODO rename to `update`
     def risk_score_update(self, increments: dict[str, int]) -> dict[str, int]:
         self.risk_score = increments
         return self.__risk_score
@@ -37,7 +41,7 @@ class RiskScore:
         elif score >= 3:
             return "responsible"
         else:
-            # raise error and or log, this shouldn't happen
+            # TODO raise and or log
             pass
 
     def view_final(self) -> dict[str, str]:
@@ -49,4 +53,5 @@ class RiskScore:
             line: self.calc_final(self.risk_score[line])
             for line in RiskScore.INSURANCE_LINES
         }
+        print(f"score view: {score_view}")
         return score_view
