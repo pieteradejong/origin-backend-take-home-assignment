@@ -1,47 +1,38 @@
 import pytest
 from app.services.profiler import Profiler
+from app.models.dataclass_models import PersonalInfoDataClass
 
 
 @pytest.fixture
-def profiler_fixture(default_personal_info_data):
-    profiler = Profiler(default_personal_info_data)
+def default_personal_info() -> PersonalInfoDataClass:
+    # def default_personal_info_data(request) -> PersonalInfoDataClass:
+    default_params = {
+        "age": 35,
+        "dependents": 2,
+        "house": {"ownership_status": "owned"},
+        "income": 0,
+        "marital_status": "married",
+        "risk_questions": [0, 1, 0],
+        "vehicle": {"year": 2018},
+    }
+    # params = {**default_params, **getattr(request, "param", {})}
+    params = {**default_params}
+
+    return PersonalInfoDataClass(**params)
+
+
+@pytest.fixture
+def profiler():
+    profiler = Profiler()
     yield profiler
     del profiler
 
 
+def test_profiler_initialization(profiler):
+    assert isinstance(profiler, Profiler), "Profiler instance not created"
+
+
 """
-import pytest
-from app.models.dataclass_models import (
-    PersonalInfoDataClass,
-    OwnershipStatusPayloadEnum,
-    MaritalStatus,
-)
-from app.services.profiler import Profiler
-
-# from dataclasses import replace
-
-
-@pytest.fixture
-def default_personal_info_data(request) -> PersonalInfoDataClass:
-    age = getattr(request, "param", {}).get("age", 35)
-    dependents = getattr(request, "param", {}).get("dependents", 2)
-    house = getattr(request, "param", {}).get("house", {"ownership_status": "owned"})
-    income = getattr(request, "param", {}).get("income", 0)
-    marital_status = getattr(request, "param", {}).get("marital_status", "married")
-    risk_questions = getattr(request, "param", {}).get("risk_questions", [0, 1, 0])
-    vehicle = getattr(request, "param", {}).get("vehicle", {"year": 2018})
-
-    return PersonalInfoDataClass(
-        age=age,
-        dependents=dependents,
-        house=house,
-        income=income,
-        marital_status=marital_status,
-        risk_questions=risk_questions,
-        vehicle=vehicle,
-    )
-
-
 # TODO: was trying to generate large set of test data.
 # But instead, each criteria should be tested individually based off a default.
 # the inputs should be base_score and personal_info_data_default, and each user property
@@ -68,9 +59,6 @@ def generate_test_data(personal_info_data_default):
 """
 """
 
-# @pytest.fixture
-# def default_profiler(default_personal_info_data) -> Profiler:
-#     return Profiler(personal_info=default_personal_info_data)
 
 # TODO: test multiple combinations
 risk_questions_combinations = [
