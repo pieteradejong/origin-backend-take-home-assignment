@@ -33,33 +33,6 @@ def test_profiler_initialization(profiler):
 
 
 """
-# TODO: was trying to generate large set of test data.
-# But instead, each criteria should be tested individually based off a default.
-# the inputs should be base_score and personal_info_data_default, and each user property
-# should be tested individually
-"""
-"""
-def generate_test_data(personal_info_data_default):
-    AGE_VARIATIONS = [25, 35, 60]
-    INCOME_VARIATIONS = [50_000, 100_000, 250_000]
-
-    test_data = []
-    for age in AGE_VARIATIONS:
-        for income in INCOME_VARIATIONS:
-            test_data.append(
-                (
-                    replace(personal_info_data_default, age=age, income=income),
-                    # You'd need to define how you determine the expected score:
-                    # TODO get_expected_risk_score is not defined
-                    # get_expected_risk_score(age, income),
-                )
-            )
-
-    return test_data
-"""
-"""
-
-
 # TODO: test multiple combinations
 risk_questions_combinations = [
     ({"risk_questions": [0, 0, 0]}, 0),

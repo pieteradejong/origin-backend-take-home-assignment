@@ -3,7 +3,7 @@
 
 [![pytest](https://github.com/pieteradejong/origin-backend-take-home-assignment/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/pieteradejong/origin-backend-take-home-assignment/actions/workflows/ci.yml)
 
-Refer to README_original.md for the original README and project requirements by [Origin Financial](https://www.useorigin.com/).
+Refer to README_original.md for the original README and project requirements by [Origin Financial GitHub repo](https://github.com/OriginFinancial/origin-backend-take-home-assignment).
 
 **Purpose**: Good practice with translating requirements into an API endpoint with basic modular and extensible functionality.
 
