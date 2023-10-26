@@ -50,9 +50,8 @@ class Profiler:
 
         if not personal_info.house:
             risk_score.risk_score = {"house": "ineligible"}
+            print(f'income: home is ineligible')
 
-        # If the user is over 60 years old,
-        # she is ineligible for disability and life insurance.
         if personal_info.age > 60:
             risk_score.risk_score = {"disability": "ineligible", "life": "ineligible"}
 

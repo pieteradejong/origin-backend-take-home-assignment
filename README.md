@@ -12,6 +12,12 @@ An opportunity to use my personal FastAPI template.
 **Audience**: Anyone interested in FastAPI/Pydantic projects.
 
 
+## Lessons
+* Critical to verify correctness and internal consistency of business requirements.
+* Then, (unit) testing of business requirements is most important.
+* .....
+
+
 ## Design
 * API endpoints
   * `GET /api/`; returns "about" message
@@ -60,8 +66,6 @@ http://127.0.0.1:8000/docs
   * [DONE] `test_risk_score`
   * [WIP] then `test_profiler`
   * [TODO] then `test_api`
-* TODO: inconsistency `PersonalInfoPayloadModel` b/w Optional, versus minlen=0 (the requirements are identical)
-* TODO Critical: incorporate Base Score based on `risk_questions`
 * `POST /risk_profile`: add param for "line": ("auto", "disability", "home", "life")
 * add `logging`
 * ? make enums for `INSURANCE_LINES` and `FINAL_SCORES`
@@ -73,3 +77,4 @@ http://127.0.0.1:8000/docs
 * ? rename: payload classes
 * refactor: re-evaluate need for eac data class and payload class
 * refactor: `@risk_score.setter` to iterate over only known incurance lines
+* 

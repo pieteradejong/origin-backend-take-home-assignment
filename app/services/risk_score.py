@@ -21,6 +21,7 @@ class RiskScore:
 
             update = increments[insurance_line]
 
+            # Final scores are, as of writing, strings; else it's an integer.
             if update in RiskScore.FINAL_SCORES:
                 self.__risk_score[insurance_line] = update
             else:
@@ -48,10 +49,8 @@ class RiskScore:
         """
         Does not modify score, just returns "view" of current assessment.
         """
-        print(f"final risk sore numeric: {self.risk_score}")
         score_view = {
             line: self.calc_final(self.risk_score[line])
             for line in RiskScore.INSURANCE_LINES
         }
-        print(f"score view: {score_view}")
         return score_view
