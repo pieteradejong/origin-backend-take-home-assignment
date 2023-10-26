@@ -32,4 +32,4 @@ class PersonalInfoPayloadModel(BaseModel):
     # marital_status: MaritalStatusPayloadModel
     marital_status: Literal["single", "married"]
     risk_questions: conlist(conint(ge=0, le=1), min_items=3, max_items=3)
-    vehicle: conlist(VehiclePayloadModel, min_items=0, max_items=1)
+    vehicle: Optional[VehiclePayloadModel]

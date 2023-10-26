@@ -56,6 +56,12 @@ http://127.0.0.1:8000/docs
 
 
 ## TODOs
+* Current TODO: 
+  * [DONE] `test_risk_score`
+  * [WIP] then `test_profiler`
+  * [TODO] then `test_api`
+* TODO: inconsistency `PersonalInfoPayloadModel` b/w Optional, versus minlen=0 (the requirements are identical)
+* TODO Critical: incorporate Base Score based on `risk_questions`
 * `POST /risk_profile`: add param for "line": ("auto", "disability", "home", "life")
 * add `logging`
 * ? make enums for `INSURANCE_LINES` and `FINAL_SCORES`
